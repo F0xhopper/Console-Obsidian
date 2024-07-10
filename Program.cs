@@ -70,7 +70,6 @@ namespace practice_game_nocopying
     }
 
 
-        // Static variables shared by all methods
         static List<Note> listOfNotes = new List<Note>();
         static List<string> listOfTags = new List<string>();
         static bool appRunning = true;
@@ -200,21 +199,31 @@ namespace practice_game_nocopying
         }
     
         static void DisplayTags() {
-            Console.WriteLine("Overview of all your tags:");
-            foreach(string tag in listOfTags){
-                var amountOfNotesWithTag = listOfNotes.Where(note => note.Tags.Contains(tag)).ToList().Count;
-                Console.WriteLine($"\nTag name: {tag}");
-                Console.WriteLine($"Tag references: {amountOfNotesWithTag}");
+            if (listOfTags.Count > 0)
+            {
+                Console.WriteLine("Overview of all your tags:");
+                foreach (string tag in listOfTags)
+                {
+                    var amountOfNotesWithTag = listOfNotes.Where(note => note.Tags.Contains(tag)).ToList().Count;
+                    Console.WriteLine($"\nTag name: {tag}");
+                    Console.WriteLine($"Tag references: {amountOfNotesWithTag}\n");
+                }
                 Console.WriteLine("Type the name of a tag you would like to see or press enter to laeve.");
                 string tagUserInput = Console.ReadLine();
-                if (listOfTags.Contains(tagUserInput)){
+                if (listOfTags.Contains(tagUserInput))
+                {
                     openTag(tagUserInput);
-                }else if(tagUserInput != null) {
+                }
+                else if (tagUserInput != null)
+                {
                     Console.WriteLine("That tag does not seem to exist.");
                 };
-
-
+            }else{
+                Console.WriteLine("You have no tags yet.");
             }
+
+
+            
 
         }
         static void openTag(string tagUserInput) {
@@ -335,6 +344,7 @@ namespace practice_game_nocopying
             else if (userResponse.Equals("edit", StringComparison.OrdinalIgnoreCase))
             {
                 EditNoteBody(note);
+                // Ability to edit tags
             }
             else if (userResponse.Equals("delete", StringComparison.OrdinalIgnoreCase))
             {
@@ -352,7 +362,6 @@ namespace practice_game_nocopying
                 note.Body = newBody;
                 note.LinkedNotes = Note.GetLinkedNotes(newBody, listOfNotes);
 
-                // Update reference counts and delete unwritten notes no longer linked
                 foreach (var oldLinkedNote in oldLinkedNotes)
                 {
                     if (!note.LinkedNotes.Contains(oldLinkedNote))
@@ -376,11 +385,21 @@ namespace practice_game_nocopying
                 listOfNotes.Remove(note);
                 foreach (var linkedNote in note.LinkedNotes)
                 {
+                    // Add part to delete tag if the only note with
                     linkedNote.DecrementReferenceCount();
                     if (string.IsNullOrWhiteSpace(linkedNote.Body) && linkedNote.ReferenceCount == 0)
                     {
                         listOfNotes.Remove(linkedNote);
                     }
+                }
+                foreach (var tag in note.Tags){
+                        var notesWithTag = listOfNotes.Where(note => note.Tags.Contains(tag)).ToList().Count;
+                        if(notesWithTag == 0){
+                        listOfTags.Remove(tag);
+                        }
+                        
+                   
+
                 }
                 Console.WriteLine("Your note has been deleted.");
             }
