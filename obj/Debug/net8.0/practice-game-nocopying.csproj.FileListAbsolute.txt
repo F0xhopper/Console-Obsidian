@@ -12,3 +12,4 @@
 /Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.pdb
 /Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.genruntimeconfig.cache
 /Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/ref/practice-game-nocopying.dll
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.sourcelink.json

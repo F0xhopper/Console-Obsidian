@@ -201,8 +201,36 @@ namespace practice_game_nocopying
     
         static void DisplayTags() {
             Console.WriteLine("Overview of all your tags:");
+            foreach(string tag in listOfTags){
+                var amountOfNotesWithTag = listOfNotes.Where(note => note.Tags.Contains(tag)).ToList().Count;
+                Console.WriteLine($"\nTag name: {tag}");
+                Console.WriteLine($"Tag references: {amountOfNotesWithTag}");
+                Console.WriteLine("Type the name of a tag you would like to see or press enter to laeve.");
+                string tagUserInput = Console.ReadLine();
+                if (listOfTags.Contains(tagUserInput)){
+                    openTag(tagUserInput);
+                }else if(tagUserInput != null) {
+                    Console.WriteLine("That tag does not seem to exist.");
+                };
 
 
+            }
+
+        }
+        static void openTag(string tagUserInput) {
+            Console.Clear();
+            var notesWithTag = listOfNotes.Where(note => note.Tags.Contains(tagUserInput)).ToList();
+            Console.WriteLine($"Notes with {tagUserInput} as a tag:");
+            foreach(Note note in notesWithTag){
+                    bool hasBody = note.Body.Length > 0;
+                    Console.WriteLine($"\nTitle: {note.Title} {(hasBody ? "" : "(Unwritten)")}");
+                    Console.Write($"Tags:");
+                    foreach(string tag in note.Tags){
+                        Console.Write($" {tag}");
+                    }
+                    Console.WriteLine($"\nReferences: {note.ReferenceCount}");
+
+            }
         }
         static void DisplayOverview()
         {

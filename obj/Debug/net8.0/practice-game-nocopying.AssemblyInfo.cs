@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("practice-game-nocopying")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0927ae40165dca2583a3d45b6e63e58c55d30cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab41506ae3eca75753795c7f4113d960530c5d44")]
 [assembly: System.Reflection.AssemblyProductAttribute("practice-game-nocopying")]
 [assembly: System.Reflection.AssemblyTitleAttribute("practice-game-nocopying")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
