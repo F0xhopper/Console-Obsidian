@@ -1,0 +1,14 @@
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/bin/Debug/net8.0/practice-game-nocopying
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/bin/Debug/net8.0/practice-game-nocopying.deps.json
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/bin/Debug/net8.0/practice-game-nocopying.runtimeconfig.json
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/bin/Debug/net8.0/practice-game-nocopying.dll
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/bin/Debug/net8.0/practice-game-nocopying.pdb
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.GeneratedMSBuildEditorConfig.editorconfig
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.AssemblyInfoInputs.cache
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.AssemblyInfo.cs
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.csproj.CoreCompileInputs.cache
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.dll
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/refint/practice-game-nocopying.dll
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.pdb
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/practice-game-nocopying.genruntimeconfig.cache
+/Users/edenphillips/Desktop/Projects/practice-game-nocopying/obj/Debug/net8.0/ref/practice-game-nocopying.dll
