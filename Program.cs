@@ -180,24 +180,30 @@ namespace practice_game_nocopying
                 Console.WriteLine("Invalid argument. Type /help for the list of commands.");
                 return;
             }
-
-            switch (userArgument.ToLower())
+            if (userArgument.StartsWith("tag ", StringComparison.OrdinalIgnoreCase))
             {
-                case "overview":
-                    DisplayOverview();
-                    break;
-                case "latest":
-                    DisplayLatestNote();
-                    break;
-                case "tags" :
-                    DisplayTags();
-                    break;
-                default:
-                    DisplayNoteDetail(userArgument);
-                    break;
+                string tagName = userArgument.Substring(4).Trim();
+                openTag(tagName);
+            }
+            else
+            {
+                switch (userArgument.ToLower())
+                {
+                    case "overview":
+                        DisplayOverview();
+                        break;
+                    case "latest":
+                        DisplayLatestNote();
+                        break;
+                    case "tags":
+                        DisplayTags();
+                        break;
+                    default:
+                        DisplayNoteDetail(userArgument);
+                        break;
+                }
             }
         }
-    
         static void DisplayTags() {
             if (listOfTags.Count > 0)
             {
@@ -208,16 +214,6 @@ namespace practice_game_nocopying
                     Console.WriteLine($"\nTag name: {tag}");
                     Console.WriteLine($"Tag references: {amountOfNotesWithTag}\n");
                 }
-                Console.WriteLine("Type the name of a tag you would like to see or press enter to laeve.");
-                string tagUserInput = Console.ReadLine();
-                if (listOfTags.Contains(tagUserInput))
-                {
-                    openTag(tagUserInput);
-                }
-                else if (tagUserInput != null)
-                {
-                    Console.WriteLine("That tag does not seem to exist.");
-                };
             }else{
                 Console.WriteLine("You have no tags yet.");
             }
@@ -344,7 +340,7 @@ namespace practice_game_nocopying
             else if (userResponse.Equals("edit", StringComparison.OrdinalIgnoreCase))
             {
                 EditNoteBody(note);
-                // Ability to edit tags
+                EditNoteTags(note);
             }
             else if (userResponse.Equals("delete", StringComparison.OrdinalIgnoreCase))
             {
@@ -375,7 +371,36 @@ namespace practice_game_nocopying
                 }
             }
         }
+        static void EditNoteTags(Note note)
+        {
+            Console.WriteLine("Enter new tags (separate with spaces) or press enter to keep previous:");
+            string newTagsInput = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(newTagsInput))
+            {
+                List<string> newTags = newTagsInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                
+                foreach (string oldTag in note.Tags)
+                {
+                    if (!newTags.Contains(oldTag))
+                    {
+                        int count = listOfNotes.Count(n => n.Tags.Contains(oldTag));
+                        if (count == 1)
+                        {
+                            listOfTags.Remove(oldTag);
+                        }
+                    }
+                }
+                  foreach (string newTag in newTags)
+                {
+                    if (!listOfTags.Contains(newTag))
+                    {
+                        listOfTags.Add(newTag);
+                    }
+                }
 
+                note.Tags = newTags;
+            }
+        }
         static void ConfirmAndDeleteNote(Note note)
         {
             Console.WriteLine("Are you sure you want to delete this note? Type 'Yes' to confirm.");
@@ -385,8 +410,7 @@ namespace practice_game_nocopying
                 listOfNotes.Remove(note);
                 foreach (var linkedNote in note.LinkedNotes)
                 {
-                    // Add part to delete tag if the only note with
-                    linkedNote.DecrementReferenceCount();
+                     linkedNote.DecrementReferenceCount();
                     if (string.IsNullOrWhiteSpace(linkedNote.Body) && linkedNote.ReferenceCount == 0)
                     {
                         listOfNotes.Remove(linkedNote);
